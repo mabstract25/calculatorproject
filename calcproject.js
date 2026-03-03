@@ -1,19 +1,38 @@
-let numberone;
-let numbertwo;
+let numberone = [];
+let numbertwo = [];
 let operator;
 let numberGrid = document.querySelectorAll('.numberbutton');
+let funcGrid = document.querySelectorAll('.funcbutton');
 let displayText = document.querySelector('#displayText');
 
-console.log(displayText)
+let activenumber = numberone;
+
+
+
 
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
     let value = parseInt(e.target.value);
+    activenumber += value;
     displayText.textContent += value;
-    console.log(value);
+    
 }));
 
 
+funcGrid.forEach(button => button.addEventListener("click", (e) =>{
+    numberone.push(activenumber);
+    let value = e.target.value;
+    operator = value;
+    
+    displayText.textContent += value;
+    activenumber = numbertwo;
+} ));
 
+
+function check() {
+    numbertwo.push(activenumber);
+    
+    
+}
 
 
 function operate(num1,ops,num2) {
@@ -23,17 +42,17 @@ function operate(num1,ops,num2) {
     divide();
 }
 
-function add() {
-    console.log("Add")
+function add(num1, num2) {
+    return num1 + num2;
 }
-function subtract() {
-    console.log("Subtract")
+function subtract(num1, num2) {
+    return num1 - num2;
 }
-function multiply() {
-    console.log("Multiply")
+function multiply(num1, num2) {
+    return num1 * num2;
 }
-function divide() {
-    console.log("Divide")
+function divide(num1, num2) {
+    return num1 / num2;
 }
 
 operate(numberone,operator,numbertwo);
