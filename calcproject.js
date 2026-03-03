@@ -1,58 +1,75 @@
-let numberone = [];
-let numbertwo = [];
+let numberone = {count: []};
+let numbertwo = {count: []};
 let operator;
 let numberGrid = document.querySelectorAll('.numberbutton');
 let funcGrid = document.querySelectorAll('.funcbutton');
 let displayText = document.querySelector('#displayText');
+let plus = 0;
+let subt = 0;
+let mult = 0;
+let divi = 0;
 
 let activenumber = numberone;
 
-
+console.log(activenumber.count);
 
 
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
     let value = parseInt(e.target.value);
-    activenumber += value;
+    activenumber.count += value;
     displayText.textContent += value;
-    
 }));
 
 
 funcGrid.forEach(button => button.addEventListener("click", (e) =>{
-    numberone.push(activenumber);
     let value = e.target.value;
     operator = value;
-    
-    displayText.textContent += value;
+    displayText.textContent += " " + value + " ";
     activenumber = numbertwo;
 } ));
 
 
 function check() {
-    numbertwo.push(activenumber);
     
+    operate(parseInt(numberone.count),operator,parseInt(numbertwo.count));
     
 }
 
 
 function operate(num1,ops,num2) {
-    add();
-    subtract();
-    multiply();
-    divide();
+    
+    if(ops === "+"){
+        plus = add(num1, num2);
+        displayText.textContent = "";
+        displayText.textContent = plus;
+    } else if(ops === "-"){
+        subt = subtract(num1, num2);
+        displayText.textContent = "";
+        displayText.textContent = subt;
+    } else if(ops === "*"){
+        mult = multiply(num1, num2);
+        displayText.textContent = "";
+        displayText.textContent = mult;
+    } else if(ops === "/"){
+        divi = divide(num1, num2);
+        displayText.textContent = "";
+        displayText.textContent = divi;
+    } else{};
+    
+
+
+    
 }
 
-function add(num1, num2) {
-    return num1 + num2;
+function add(a, b) {
+    return a + b;
 }
-function subtract(num1, num2) {
-    return num1 - num2;
+function subtract(a, b) {
+    return a - b;
 }
-function multiply(num1, num2) {
-    return num1 * num2;
+function multiply(a, b) {
+    return a * b;
 }
-function divide(num1, num2) {
-    return num1 / num2;
+function divide(a, b) {
+    return a / b;
 }
-
-operate(numberone,operator,numbertwo);
