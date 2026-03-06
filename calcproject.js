@@ -18,7 +18,7 @@ console.log(activenumber.count);
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
     
     if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
-        console.log("This would be a sum");
+        check();
     } else {
         let value = parseInt(e.target.value);
         activenumber.count += value;
@@ -31,7 +31,7 @@ numberGrid.forEach(button => button.addEventListener("click", (e) =>{
 funcGrid.forEach(button => button.addEventListener("click", (e) =>{
     
     if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
-        console.log("This would be a sum");
+        check();
     } else {
         let value = e.target.value;
         operator = value;
