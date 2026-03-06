@@ -1,5 +1,6 @@
 let numberone = {count: []};
 let numbertwo = {count: []};
+let runningtotal = {count: []};
 let operator;
 let numberGrid = document.querySelectorAll('.numberbutton');
 let funcGrid = document.querySelectorAll('.funcbutton');
@@ -15,17 +16,29 @@ console.log(activenumber.count);
 
 
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
-    let value = parseInt(e.target.value);
-    activenumber.count += value;
-    displayText.textContent += value;
+    
+    if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
+        console.log("This would be a sum");
+    } else {
+        let value = parseInt(e.target.value);
+        activenumber.count += value;
+        displayText.textContent += value;
+    }
+
 }));
 
 
 funcGrid.forEach(button => button.addEventListener("click", (e) =>{
-    let value = e.target.value;
-    operator = value;
-    displayText.textContent += " " + value + " ";
-    activenumber = numbertwo;
+    
+    if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
+        console.log("This would be a sum");
+    } else {
+        let value = e.target.value;
+        operator = value;
+        displayText.textContent += " " + value + " ";
+        activenumber = numbertwo;
+    }
+    
 } ));
 
 
