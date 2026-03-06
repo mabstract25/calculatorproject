@@ -1,7 +1,7 @@
 let numberone = {count: []};
 let numbertwo = {count: []};
 let runningtotal = {count: []};
-let operator;
+let operator = "";
 let numberGrid = document.querySelectorAll('.numberbutton');
 let funcGrid = document.querySelectorAll('.funcbutton');
 let displayText = document.querySelector('#displayText');
@@ -17,14 +17,10 @@ let activenumber = numberone;
 
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
     
-    if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
-        check();
-    } else {
-        let value = parseInt(e.target.value);
-        activenumber.count += value;
-        displayText.textContent += value;
-    }
-
+    let value = parseInt(e.target.value);
+    activenumber.count += value;
+    displayText.textContent += value;
+    
 }));
 
 
@@ -38,38 +34,36 @@ funcGrid.forEach(button => button.addEventListener("click", (e) =>{
         displayText.textContent += " " + value + " ";
         activenumber = numbertwo;
     }
-    
+
 } ));
 
 
-function check() {
-    
+function check() { 
     operate(parseInt(numberone.count),operator,parseInt(numbertwo.count));
-    
+    equalCalc();
 }
 
 
 function operate(num1,ops,num2) {
     
     if(ops === "+"){
-        runningtotal.count = add(num1, num2);
+        runningtotal.count += add(num1, num2);
         displayText.textContent = "";
         displayText.textContent = runningtotal.count;
     } else if(ops === "-"){
-        runningtotal.count = subtract(num1, num2);
+        runningtotal.count += subtract(num1, num2);
         displayText.textContent = "";
         displayText.textContent = runningtotal.count;
     } else if(ops === "*"){
-        runningtotal.count = multiply(num1, num2);
+        runningtotal.count += multiply(num1, num2);
         displayText.textContent = "";
         displayText.textContent = runningtotal.count;
     } else if(ops === "/"){
-        runningtotal.count = divide(num1, num2);
+        runningtotal.count += divide(num1, num2);
         displayText.textContent = "";
         displayText.textContent = runningtotal.count;
     } else{};
     
-    console.log(runningtotal);
 
     
 }
@@ -85,4 +79,16 @@ function multiply(a, b) {
 }
 function divide(a, b) {
     return a / b;
+}
+
+function equalCalc() {
+    numberone.count = parseInt(runningtotal.count)
+    numbertwo = {count: []};
+    operator = "";
+}
+
+function clearValues() {
+    numberone = {count: []};
+    numbertwo = {count: []};
+    operator = "";
 }
