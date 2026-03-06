@@ -12,7 +12,7 @@ let divi = 0;
 
 let activenumber = numberone;
 
-console.log(activenumber.count);
+
 
 
 numberGrid.forEach(button => button.addEventListener("click", (e) =>{
@@ -52,24 +52,24 @@ function check() {
 function operate(num1,ops,num2) {
     
     if(ops === "+"){
-        plus = add(num1, num2);
+        runningtotal.count = add(num1, num2);
         displayText.textContent = "";
-        displayText.textContent = plus;
+        displayText.textContent = runningtotal.count;
     } else if(ops === "-"){
-        subt = subtract(num1, num2);
+        runningtotal.count = subtract(num1, num2);
         displayText.textContent = "";
-        displayText.textContent = subt;
+        displayText.textContent = runningtotal.count;
     } else if(ops === "*"){
-        mult = multiply(num1, num2);
+        runningtotal.count = multiply(num1, num2);
         displayText.textContent = "";
-        displayText.textContent = mult;
+        displayText.textContent = runningtotal.count;
     } else if(ops === "/"){
-        divi = divide(num1, num2);
+        runningtotal.count = divide(num1, num2);
         displayText.textContent = "";
-        displayText.textContent = divi;
+        displayText.textContent = runningtotal.count;
     } else{};
     
-
+    console.log(runningtotal);
 
     
 }
