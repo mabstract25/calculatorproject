@@ -1,6 +1,6 @@
 let numberone = {count: []};
 let numbertwo = {count: []};
-let operator = "";
+let operator = [];
 let numberGrid = document.querySelectorAll('.numberbutton');
 let funcGrid = document.querySelectorAll('.funcbutton');
 let displayText = document.querySelector('#displayText');
@@ -26,12 +26,12 @@ numberGrid.forEach(button => button.addEventListener("click", (e) =>{
 
 
 funcGrid.forEach(button => button.addEventListener("click", (e) =>{
-    
+    let value = e.target.value;
     if(numberone.count > 0 && numbertwo.count > 0 && operator.length > 0){
+        operator[1] = value;
         check();
     } else {
-        let value = e.target.value;
-        operator = value;
+        operator[0] = value;
         displayText.textContent += " " + value + " ";
         activenumber = numbertwo;
     }
@@ -40,15 +40,11 @@ funcGrid.forEach(button => button.addEventListener("click", (e) =>{
 
 
 function check() { 
-    let checkSum = operate(parseInt(numberone.count),operator,parseInt(numbertwo.count));
+    let checkSum = operate(parseInt(numberone.count),operator[0],parseInt(numbertwo.count));
     numberone.count = parseInt(checkSum);
     numbertwo.count = 0;
-    operator = "";
-
+    operator.splice(0, 1);
     
-    console.log("number one is " + numberone.count);
-    console.log("number two is " + numbertwo.count);
-    console.log("the active number is " + activenumber.count)
 }
 
 
@@ -77,6 +73,19 @@ function operate(num1,ops,num2) {
     } else{};
     
     
+    
+}
+
+function clearVal() {
+    numberone.count = 0;
+    numbertwo.count = 0;
+    operator.splice(0, operator.length);
+    console.log(numberone.count);
+    console.log(numbertwo.count);
+    console.log(operator);
+
+    displayText.textContent = "";
+    activenumber = numberone;
     
 }
 
