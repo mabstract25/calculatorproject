@@ -1,6 +1,6 @@
-let numberone = {count: []};
-let numbertwo = {count: []};
-let runningtotal = {count: []};
+let numberone = {count: 0};
+let numbertwo = {count: 0};
+let runningtotal = {count: 0};
 let operator = "";
 let numberGrid = document.querySelectorAll('.numberbutton');
 let funcGrid = document.querySelectorAll('.funcbutton');
@@ -41,6 +41,10 @@ funcGrid.forEach(button => button.addEventListener("click", (e) =>{
 function check() { 
     operate(parseInt(numberone.count),operator,parseInt(numbertwo.count));
     equalCalc();
+    console.log("number one is " + numberone.count);
+    console.log("number two is " + numbertwo.count);
+    console.log("running total is " + runningtotal.count);
+    console.log("the active number is " + activenumber)
 }
 
 
@@ -64,7 +68,7 @@ function operate(num1,ops,num2) {
         displayText.textContent = runningtotal.count;
     } else{};
     
-
+    
     
 }
 
@@ -82,9 +86,10 @@ function divide(a, b) {
 }
 
 function equalCalc() {
-    numberone.count = parseInt(runningtotal.count)
-    numbertwo = {count: []};
+    numberone.count = runningtotal.count;
+    numbertwo = {count: 0};
     operator = "";
+    
 }
 
 function clearValues() {
